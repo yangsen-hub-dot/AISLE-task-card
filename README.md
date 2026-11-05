@@ -7,8 +7,9 @@ A standalone English design demo for the AISLE task catalogue and a colour-match
 ## What is included
 
 - A visual showcase and four top-level task categories: Experimental optimisation, Constraint adherence, Adaptive robustness, and Multimodal spectral reasoning.
-- A colour-matching task card and dedicated detail page.
-- A guided walkthrough of inputs, model actions, experimental feedback, and verification.
+- Four concise task cards and a matching task list.
+- An animated colour-matching case with stage selection, pause, and replay controls.
+- Reduced-motion support and automatic suspension when the animation is out of view.
 - A Suzhou experiment film from the AISLE website.
 
 ## Run locally

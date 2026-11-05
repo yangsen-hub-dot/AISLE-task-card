@@ -60,3 +60,101 @@
 .side-note{color:#9aa9b7}
 .play-disc{border:1px solid #b7cbdc44;color:#ecefef}
 .scene-status:before{background:#d2b58b}
+
+/* Compact task catalogue and animated experimental case. */
+.case-top{flex-wrap:wrap;gap:12px}
+.film-trigger{margin-left:auto}
+.case-body{grid-template-columns:minmax(0,1.65fr) minmax(300px,1fr)}
+.stage{min-height:440px;display:flex;align-items:center}
+.scene-svg{width:100%;height:auto;min-height:0;aspect-ratio:720 / 430;overflow:visible}
+.scene-svg text{font-family:var(--sans);fill:#b7cbdc}
+.scene-svg .scene-label{font-size:10px;letter-spacing:1.3px}
+.scene-svg .component-label{font-size:12px;fill:#ecefef}
+.scene-topline{top:22px;left:24px;right:24px;pointer-events:none}
+.scene-caption{bottom:18px;left:24px;right:24px;max-width:none;display:flex;justify-content:space-between;gap:12px;font-size:10px}
+.scene-caption span:last-child{opacity:.65}
+.side{min-height:440px;padding:30px 30px 25px}
+.side>.eyebrow{font-size:9px;letter-spacing:.12em}
+.side h3{font-size:32px;line-height:1.22;margin:15px 0 12px}
+.side-copy{min-height:0;font-size:12px;line-height:1.8}
+.case-stats{display:flex;gap:33px;margin:24px 0;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.case-stats>div{display:flex;flex-direction:column;gap:2px}
+.case-stats strong{font-family:var(--serif);font-size:29px;font-weight:400;line-height:1.2;color:#d2b58b}
+.case-stats span{font-size:10px;color:var(--muted)}
+.phase-copy{min-height:102px;margin-bottom:15px}
+.phase-copy h4{font-size:14px;font-weight:500;margin:8px 0 5px}
+.phase-copy p{font-size:11px;color:var(--muted);line-height:1.75;max-width:350px}
+.side>.small-link{font-size:11px;margin-top:auto;align-self:flex-start}
+.case-bottom{padding:12px 19px;gap:10px}
+.steps{gap:2px;flex-wrap:nowrap;padding:3px}
+.steps button{padding:8px 12px;font-size:11px}
+.playback{display:flex;align-items:center;gap:9px;margin-left:auto}
+.playback .subtle-btn{min-width:80px;justify-content:center}
+.restart-btn{border:1px solid var(--line);background:transparent;width:31px;height:31px;border-radius:50%;font-size:19px;color:var(--muted)}
+.restart-btn:hover{color:var(--ink);border-color:#b7cbdc77}
+.animation-track{height:2px;background:#b7cbdc10}
+.animation-track span{display:block;height:100%;width:100%;background:#d2b58b;transform:scaleX(0);transform-origin:left}
+.catalog-section{margin-top:42px}
+.catalog-head h2,.list-heading h2{font-family:var(--serif);font-size:26px;font-weight:400}
+.card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.task-card{display:flex;flex-direction:column;min-width:0;border-radius:15px;transition:transform .2s,border-color .2s}
+.task-card:hover{transform:translateY(-4px);border-color:#b7cbdc66}
+.card-art{background:radial-gradient(ellipse at 50% 100%,#92adcc10,transparent 80%);border-bottom:1px solid var(--line);padding:12px 0}
+.card-art svg{width:100%;height:auto}
+.card-content{padding:21px;flex:1}
+.card-content .eyebrow{font-size:9px;letter-spacing:.15em}
+.card-content h3{font-size:23px;line-height:1.25;min-height:58px;margin:10px 0}
+.card-content p{font-size:11px;line-height:1.8}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin:16px 0 20px}
+.card-tags span{font-size:9px;padding:3px 7px}
+.card-cta{padding-top:8px;font-size:11px}
+.tab-count{font-size:9px;border:1px solid var(--line);border-radius:20px;padding:0 6px;margin-left:2px}
+.list-heading{display:flex;align-items:center;justify-content:space-between;margin:24px 0 18px}
+.list-heading>span{font-size:11px;color:var(--muted)}
+.list-row{grid-template-columns:30px minmax(0,1fr) 165px 20px;gap:24px;padding:30px 27px}
+.list-number{font-size:11px;color:#d2b58b;align-self:start;padding-top:4px}
+.list-main strong{font-family:var(--serif);font-size:23px;font-weight:400}
+.list-main p{font-size:12px;line-height:1.8;max-width:650px;margin-top:7px}
+.list-tags{display:flex;flex-direction:column;gap:6px;font-size:11px;color:#b7cbdc}
+.list-arrow{font-size:20px;color:#b7cbdc}
+.detail-intro{margin:30px 0 27px}
+.detail-title{font-size:40px;line-height:1.23;margin:12px 0 15px}
+.detail-description{margin-bottom:0}
+.back-link{margin-bottom:22px}
+.site-footer{margin-top:42px}
+@media(min-width:1550px){.stage,.side{min-height:460px}.scene-svg{min-height:0}}
+@media(max-width:1100px){
+ .case-body{grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr)}
+ .side{padding:25px 23px}.side h3{font-size:29px}
+ .card-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+ .card-content h3{min-height:0}.card-art{padding:5px 25px}
+ .scene-topline{font-size:8px}.scene-status{font-size:8px}
+}
+@media(max-width:760px){
+ .case-body{grid-template-columns:1fr}.stage{min-height:0;padding:32px 0 29px;border-right:0}
+ .scene-svg{min-height:0}.scene-topline{left:18px;right:18px;top:16px}
+ .scene-caption{left:18px;right:18px;bottom:13px;font-size:9px}
+ .side{min-height:0;padding:24px}.side h3 br,.side-copy br{display:none}
+ .side h3{font-size:29px;line-height:1.3}.side h3 br:after{content:' '}
+ .case-stats{margin:18px 0;gap:35px;padding-bottom:17px}
+ .case-stats>div{flex-direction:row;align-items:baseline;gap:7px}
+ .case-stats strong{font-size:25px}.phase-copy{min-height:85px;margin-bottom:15px}
+ .case-bottom{padding:12px;gap:12px}.steps{width:auto;justify-content:flex-start}
+ .steps button{padding:8px 10px}.playback{margin-left:auto}
+ .card-art{padding:10px 0}.card-content{padding:19px}
+ .list-row{grid-template-columns:22px minmax(0,1fr) 18px;gap:13px;padding:23px 19px}
+ .list-tags{grid-column:2;grid-row:2;flex-direction:row;flex-wrap:wrap;gap:15px;font-size:10px}
+ .list-arrow{grid-column:3;grid-row:1}.list-main strong{font-size:22px}
+ .list-main p{font-size:11px}.detail-title{font-size:34px}
+}
+@media(max-width:480px){
+ .card-grid{display:grid;grid-template-columns:1fr;gap:17px}.card-art{padding:0 18px}
+ .card-content h3{font-size:25px;min-height:0}.card-content p{font-size:12px}
+ .case-top{padding:12px;gap:8px}.case-top strong{font-size:11px}.film-trigger{font-size:10px;padding:6px 9px}
+ .case-top .case-id{display:none}.case-bottom{justify-content:center}.steps{width:100%;justify-content:space-between}
+ .steps button{font-size:10px;padding:7px 9px}.steps button small{display:none}
+ .playback{margin:0 0 0 auto}.side{padding:21px}.side h3{font-size:27px}
+ .side>.eyebrow{font-size:8px}.case-stats{gap:25px}.case-stats span{font-size:9px}
+ .scene-caption{font-size:8px;left:12px;right:12px}.scene-topline{left:12px;right:12px;font-size:7px}.scene-status{font-size:7px}
+ .list-heading h2{font-size:25px}.list-main strong{font-size:21px}.detail-title{font-size:29px}
+}
