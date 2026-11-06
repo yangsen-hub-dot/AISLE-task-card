@@ -56,6 +56,9 @@ function caseMarkup() {
   </div>
  </div>`;
 }
+function solidFeatureMarkup() {
+ return '<section class="case solid-feature" id="featured-case" aria-label="Featured solid electrolyte evaluation"><div class="case-top"><span class="case-icon" aria-hidden="true"></span><strong>Solid electrolyte prediction</strong><span class="case-id">PSI-BENCH / MATERIALS SCIENCE</span><a class="small-link solid-open" href="solid-electrolyte.html">Explore the full case ↗</a></div><div class="solid-feature-body"><a class="solid-feature-poster" href="solid-electrolyte.html"><img src="assets/solid-electrolyte-card.webp" alt="Solid electrolyte evaluation: crystal structure, model predictions and independent scoring"><span>Explore the 3D evaluation ↗</span></a><iframe id="solid-feature-frame" src="solid-electrolyte.html?featured=1" title="Interactive solid electrolyte prediction and independent evaluation" loading="eager"></iframe></div></section>';
+}
 function renderCards() {
  return taskEntries.map((task,i)=>'<a class="task-card"'+(task.cardId?' id="'+task.cardId+'"':'')+' href="'+task.href+'"><div class="card-art"><img src="assets/'+task.poster+'" alt="" loading="lazy" width="760" height="475"><span class="cover-source">'+task.media+'</span></div><div class="card-content"><span class="eyebrow">TASK 0'+(i+1)+'</span><h3>'+task.title+'</h3><p>'+task.description+'</p><div class="card-tags">'+task.tags.map(tag=>'<span>'+tag+'</span>').join('')+'</div><span class="card-cta">'+task.cta+' →</span></div></a>').join('');
 }
@@ -64,7 +67,7 @@ function renderTaskList() {
  return '<div class="list-heading"><h2>All tasks</h2><span>'+taskEntries.length+' tasks</span></div><div class="task-list">'+taskEntries.map((task,i)=>'<a class="list-row" href="'+task.href+'"><span class="list-number">0'+(i+1)+'</span><div class="list-main"><strong>'+task.title+'</strong><p>'+task.description+'</p></div><div class="list-tags">'+task.tags.map(tag=>'<span>'+tag+'</span>').join('')+'</div><span class="list-arrow" aria-hidden="true">→</span></a>').join('')+'</div>';
 }
 
-const catalog = '<main class="wrap"><section class="intro"><div><span class="eyebrow">SCIENTIFIC TASKS AND MODEL EVALUATION</span><h1>Explore <em>scientific tasks.</em></h1><p>Explore experimental workflows and see how model predictions are evaluated.</p></div><div class="intro-note">'+taskEntries.length+' tasks.<br>Nature as the verifier.</div></section><div class="view-tabs" role="tablist" aria-label="Task browsing mode"><button id="visual-tab" role="tab" aria-selected="true" aria-controls="visual-panel"><span class="tab-icon" aria-hidden="true">▦</span>Task cards</button><button id="list-tab" role="tab" aria-selected="false" aria-controls="list-panel" tabindex="-1"><span class="tab-icon" aria-hidden="true">☷</span>All tasks <span class="tab-count">'+taskEntries.length+'</span></button></div><section id="visual-panel" role="tabpanel" aria-labelledby="visual-tab"><div class="section-heading"><div><span class="eyebrow">FEATURED CASE</span><h2>From a target colour to the next experiment.</h2></div><a class="small-link" href="color-matching.html">View case ↗</a></div>'+caseMarkup()+'<section class="catalog-section"><div class="catalog-head"><h2>Explore the tasks</h2><p>'+taskEntries.length+' tasks</p></div><div class="card-grid">'+renderCards()+'</div></section></section><section id="list-panel" role="tabpanel" aria-labelledby="list-tab" hidden>'+renderTaskList()+'</section></main>';
+const catalog = '<main class="wrap"><section class="intro"><div><span class="eyebrow">SCIENTIFIC TASKS AND MODEL EVALUATION</span><h1>Explore <em>scientific tasks.</em></h1><p>Explore experimental workflows and see how model predictions are evaluated.</p></div><div class="intro-note">'+taskEntries.length+' tasks.<br>Nature as the verifier.</div></section><div class="view-tabs" role="tablist" aria-label="Task browsing mode"><button id="visual-tab" role="tab" aria-selected="true" aria-controls="visual-panel"><span class="tab-icon" aria-hidden="true">▦</span>Task cards</button><button id="list-tab" role="tab" aria-selected="false" aria-controls="list-panel" tabindex="-1"><span class="tab-icon" aria-hidden="true">☷</span>All tasks <span class="tab-count">'+taskEntries.length+'</span></button></div><section id="visual-panel" role="tabpanel" aria-labelledby="visual-tab"><div class="section-heading"><div><span class="eyebrow">FEATURED CASE</span><h2>From crystal structure to verified prediction.</h2></div><a class="small-link" href="solid-electrolyte.html">View case ↗</a></div>'+solidFeatureMarkup()+'<section class="catalog-section"><div class="catalog-head"><h2>Explore the tasks</h2><p>'+taskEntries.length+' tasks</p></div><div class="card-grid">'+renderCards()+'</div></section></section><section id="list-panel" role="tabpanel" aria-labelledby="list-tab" hidden>'+renderTaskList()+'</section></main>';
 const detail = '<main class="wrap"><section class="detail-intro"><a class="back-link" href="index.html">← Back to task cards</a><div class="eyebrow">FEATURED CASE / SUZHOU REAL-4D</div><h1 class="detail-title">Colour matching.<br><em>Decisions through experiments.</em></h1><p class="detail-description">Watch the experimental loop, from a proposed formulation to the next decision.</p></section>'+caseMarkup()+'</main>';
 function videoTaskMarkup() {
  const id = document.body.dataset.task || new URLSearchParams(location.search).get('task');
@@ -78,13 +81,13 @@ function videoTaskMarkup() {
  const walkthroughTitle = task.videoTitle || task.caseTitle;
  return '<main class="wrap"><section class="detail-intro">'+back+'<div class="eyebrow">'+task.title+'</div><h1 class="detail-title">'+task.caseTitle+'</h1><p class="detail-description">'+task.copy+'</p></section><div class="case stage stage--video task-film"><div class="workflow-label"><span>ILLUSTRATED WORKFLOW · '+walkthroughTitle+'</span><a class="small-link" href="'+task.official+'" target="_blank" rel="noreferrer">Official task ↗</a></div><video controls playsinline preload="metadata" poster="assets/'+(task.videoPoster || task.poster)+'" aria-label="'+walkthroughTitle+'"><source src="assets/'+task.video+'" type="video/mp4"></video><div class="workflow-caption"><span>'+(task.caption || 'Illustrative case')+'</span><a href="assets/'+task.video+'" download>Download MP4 ↓</a></div></div>'+researchFilm+'</main>';
 }
-app.innerHTML=header+(isVideoTask?videoTaskMarkup():isDetail?detail:catalog)+footer+(isVideoTask?'':dialog);
+app.innerHTML=header+(isVideoTask?videoTaskMarkup():isDetail?detail:catalog)+footer+(isDetail?dialog:'');
 if (isVideoTask) {
  const selectedId=document.body.dataset.task || new URLSearchParams(location.search).get('task');
  const note=taskEntries.find(task=>task.id===selectedId)?.note;
  if(note){const p=document.createElement('p');p.className='case-source-note';p.textContent=note;document.querySelector('main').append(p);}
 }
-if (!isVideoTask) {
+if (isDetail) {
 
 const workflow = document.getElementById('workflow');
 const workflowStill = document.getElementById('workflow-still');
@@ -181,21 +184,6 @@ play.addEventListener('click',()=>{
 });
 document.addEventListener('visibilitychange',()=>{if(document.hidden) stopPlayback();});
 
-if(!isDetail){
- const tabs=[document.getElementById('visual-tab'),document.getElementById('list-tab')];
- function switchView(tab){
-  tabs.forEach(t=>{const selected=t===tab;t.setAttribute('aria-selected',String(selected));t.tabIndex=selected?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!selected});
-  if(tab===tabs[1]) stopPlayback();
- }
- tabs.forEach((tab,i)=>{
-  tab.addEventListener('click',()=>switchView(tab));
-  tab.addEventListener('keydown',event=>{
-   if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){
-    event.preventDefault();const target=event.key==='Home'?tabs[0]:event.key==='End'?tabs[1]:tabs[1-i];switchView(target);target.focus();
-   }
-  });
- });
-}
 const filmDialog=document.getElementById('film-dialog'),film=document.getElementById('film');
 const filmButton=document.querySelector('[data-play]');
 filmButton.addEventListener('click',()=>{
@@ -209,4 +197,20 @@ filmDialog.addEventListener('click',event=>{
  if(event.target===filmDialog){const rect=filmDialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)filmDialog.close()}
 });
 film.addEventListener('error',()=>document.getElementById('media-error').hidden=false);
+}
+
+if(document.body.dataset.page==='catalog'){
+ const tabs=[document.getElementById('visual-tab'),document.getElementById('list-tab')];
+ function switchView(tab){
+  tabs.forEach(t=>{const selected=t===tab;t.setAttribute('aria-selected',String(selected));t.tabIndex=selected?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!selected});
+  document.dispatchEvent(new CustomEvent('catalog-view-change',{detail:{visual:tab===tabs[0]}}));
+ }
+ tabs.forEach((tab,i)=>{
+  tab.addEventListener('click',()=>switchView(tab));
+  tab.addEventListener('keydown',event=>{
+   if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){
+    event.preventDefault();const target=event.key==='Home'?tabs[0]:event.key==='End'?tabs[1]:tabs[1-i];switchView(target);target.focus();
+   }
+  });
+ });
 }

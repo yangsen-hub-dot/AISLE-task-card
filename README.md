@@ -14,6 +14,7 @@ A standalone English design preview for the AISLE task catalogue, illustrated ca
 - A dedicated [Task 02 replay](https://yangsen-hub-dot.github.io/AISLE-task-card/constraint-adherence.html), linked from both the task cards and task list.
 - Revised [Task 03 adaptive robustness](https://yangsen-hub-dot.github.io/AISLE-task-card/adaptive-robustness.html) and [Task 04 spectral inference](https://yangsen-hub-dot.github.io/AISLE-task-card/spectral-inference.html) videos, linked from both catalogue views.
 - An interactive solid electrolyte prediction case.
+- The homepage Featured case embeds the solid electrolyte 3D scene with stage controls; the colour-matching walkthrough remains in its own task card and page.
 - A proposed [Quantum Dot Formulation Optimisation task](https://yangsen-hub-dot.github.io/AISLE-task-card/quantum-dot.html), with formulation ranges, spectral observations, query rules and independent scoring criteria.
 
 ## Run locally
