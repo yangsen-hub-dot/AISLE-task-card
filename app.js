@@ -9,10 +9,13 @@ const taskEntries = [
  {title:'Solid electrolyte prediction',description:'Predict ionic conductivity, XRD pattern group and product grade from historical experimental records.',tags:['PSI-Bench','3D evaluation'],href:'solid-electrolyte.html',poster:'solid-electrolyte-card.webp',media:'INTERACTIVE 3D',cta:'Explore in 3D'}
 ];
 const steps = [
- {time:0,nav:'Propose',title:'Choose what to mix',copy:'The model selects volumes of A–D to approach the fixed target colour.'},
- {time:6.1,nav:'Experiment',title:'Run the proposed formulation',copy:'The liquid handler collects each component and dispenses it into the sample well.'},
- {time:22,nav:'Observe',title:'Measure the sample colour',copy:'The instrument reads the sample spectrum and derives its colour for comparison with the fixed target.'},
- {time:30.6,nav:'Adapt',title:'Use the result to choose again',copy:'The observation returns to the model. The evaluation checks the measured colour against the target (ΔE₀₀ ≤ 1) within 12 scored experiments.'}
+ {time:0,focus:0,nav:'Search',title:'Select a candidate',copy:'The model selects volumes of A–D to approach the fixed target colour.'},
+ {time:3.6,focus:4.8,nav:'Handoff',title:'Send formulation 01',copy:'The proposed volumes for A–D are sent to the liquid handler.'},
+ {time:6.1,focus:8.9,nav:'Dispense',title:'Add components A–D',copy:'The pipette transfers the specified volume of each component to the sample well.'},
+ {time:19.3,focus:20.6,nav:'Mix',title:'Mix the sample',copy:'The four liquids are mixed in the same well before measurement.'},
+ {time:22,focus:25.6,nav:'Spectrum',title:'Read the spectrum',copy:'The reader scans the sample across visible wavelengths and derives its observed colour.'},
+ {time:27,focus:28.8,nav:'Feedback',title:'Return the observed colour',copy:'The measured colour is compared with the fixed target and returned to the optimiser.'},
+ {time:30.6,focus:34.8,nav:'Next run',title:'Update the next formulation',copy:'The optimiser uses the observation to revise the A–D volumes. The task scores colour match within 12 experiments (ΔE₀₀ ≤ 1).'}
 ];
 const header = '<header class="header wrap"><a class="brand" href="index.html" aria-label="AISLE task catalogue"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><strong>AISLE</strong><span class="brand-sub">AI SCIENTISTS’<br>LAST EXAM</span></a><nav aria-label="Main navigation"><a href="https://aisle.science/" target="_blank" rel="noreferrer">Home</a><a class="active" href="index.html" aria-current="page">Tasks</a><a href="https://aisle.science/leaderboard.html" target="_blank" rel="noreferrer">Leaderboard ↗</a></nav><span class="prototype">DESIGN PREVIEW</span></header>';
 const footer = '<footer class="site-footer wrap"><span>AISLE · Nature as the verifier.</span><span>Design preview · Illustrated examples</span><a href="https://aisle.science/tasks.html" target="_blank" rel="noreferrer">AISLE task descriptions ↗</a></footer>';
@@ -24,27 +27,29 @@ const dialog = `<dialog class="video-dialog" id="film-dialog" aria-labelledby="f
 </dialog>`;
 
 function caseMarkup() {
- const labels = steps.map((step,i) => `<button type="button" data-phase="${i}" aria-pressed="${i===0}" disabled>${step.nav}</button>`).join('');
+ const labels = steps.map((step,i) => `<button type="button" data-phase="${i}" aria-pressed="${i===0}">${step.nav}</button>`).join('');
  return `<div class="case colour-case" id="featured-case">
   <div class="case-top"><span class="case-icon" aria-hidden="true"></span><strong>Experimental optimisation</strong><span class="case-id">COLOUR MATCHING / SUZHOU REAL-4D</span><button class="subtle-btn film-trigger" type="button" data-play>▷ Experiment film</button></div>
   <div class="case-body">
-   <div class="stage stage--video">
-    <div class="workflow-label"><span>THE EXPERIMENTAL LOOP</span><span>Illustrated workflow · 36 s</span></div>
-    <video id="workflow" src="assets/colour-matching-workflow.mp4" poster="assets/colour-matching-workflow.webp" controls playsinline preload="metadata" aria-label="Original colour-matching animation"></video>
-    <div class="workflow-caption"><span>Formulation · Experiment · Spectrum · Feedback</span><a href="assets/colour-matching-workflow.mp4" download>Download MP4 ↓</a></div>
+   <div class="stage workflow-stage">
+    <div class="workflow-label"><span>THE EXPERIMENTAL LOOP</span><span>Interactive workflow · 7 stages</span></div>
+    <div class="workflow-frame">
+     <img id="workflow-still" src="assets/colour-workflow/stills/0.webp" alt="Illustrated colour-matching workflow, stage 1">
+     <iframe id="workflow" src="assets/colour-workflow/index.html" title="Illustrated colour-matching workflow" hidden></iframe>
+    </div>
+    <div class="workflow-caption"><span>Formulation · Experiment · Spectrum · Feedback</span><span>Drag the slider below</span></div>
    </div>
    <aside class="side">
     <span class="eyebrow">01 / EXPERIMENTAL OPTIMISATION</span><h3>Can AI match a target colour?</h3>
     <p class="side-copy">Four components. Real experiments. Each observation shapes the next decision.</p>
     <div class="case-stats"><div><strong>4</strong><span>components</span></div><div><strong>12</strong><span>scored experiments</span></div></div>
-    <div class="phase-copy" aria-live="polite"><span class="side-index" id="phase-index">01 / PROPOSE</span><h4 id="phase-title">${steps[0].title}</h4><p id="phase-copy">${steps[0].copy}</p></div>
+    <div class="phase-copy" aria-live="polite"><span class="side-index" id="phase-index">01 / SEARCH</span><h4 id="phase-title">${steps[0].title}</h4><p id="phase-copy">${steps[0].copy}</p></div>
     <a class="small-link" href="https://aisle.science/tasks.html#optimization" target="_blank" rel="noreferrer">Official task ↗</a>
    </aside>
   </div>
   <div class="case-bottom colour-controls">
-   <button class="subtle-btn" id="workflow-play" type="button" disabled>▷ Play</button>
-   <div class="colour-timeline"><input id="workflow-scrub" type="range" min="0" max="36" step="0.01" value="0" aria-label="Animation progress" aria-valuetext="0 seconds · Propose" disabled><div class="colour-steps" aria-label="Animation stages">${labels}</div></div>
-   <span id="workflow-count">01 / 04</span>
+   <div class="colour-timeline"><input id="workflow-scrub" type="range" min="0" max="36" step="0.01" value="0" aria-label="Explore the workflow" aria-valuetext="Search"><div class="colour-steps" aria-label="Workflow stages">${labels}</div></div>
+   <span id="workflow-count">01 / 07</span>
   </div>
  </div>`;
 }
@@ -74,55 +79,52 @@ app.innerHTML=header+(isVideoTask?videoTaskMarkup():isDetail?detail:catalog)+foo
 if (!isVideoTask) {
 
 const workflow = document.getElementById('workflow');
+const workflowStill = document.getElementById('workflow-still');
 const scrub = document.getElementById('workflow-scrub');
-const play = document.getElementById('workflow-play');
 const phaseButtons = [...document.querySelectorAll('.colour-steps [data-phase]')];
-let displayedStage = -1;
+let workflowReady = false;
+let displayedStage = 0;
+let renderFrame = 0;
+let position = 0;
 
-function syncWorkflow() {
- const time = workflow.currentTime;
- const step = steps.findLast(entry => time >= entry.time);
- const index = steps.indexOf(step);
+function seekWorkflow(time) {
+ position = time;
  scrub.value = time;
- scrub.setAttribute('aria-valuetext',Math.floor(time)+' seconds · '+step.nav);
+ if(workflowReady&&!renderFrame){
+  renderFrame=requestAnimationFrame(()=>{
+   renderFrame=0;
+   workflow.contentWindow.postMessage({type:'aisle-workflow-seek',time:position},location.origin);
+  });
+ }
+ const index = steps.findLastIndex(step => time >= step.time);
+ const step = steps[index];
+ scrub.setAttribute('aria-valuetext',step.nav);
  if(index===displayedStage) return;
  displayedStage=index;
+ if(!workflowReady){
+  workflowStill.src='assets/colour-workflow/stills/'+index+'.webp';
+  workflowStill.alt='Illustrated colour-matching workflow · '+step.title;
+ }
  document.getElementById('phase-index').textContent='0'+(index+1)+' / '+step.nav.toUpperCase();
  document.getElementById('phase-title').textContent=step.title;
  document.getElementById('phase-copy').textContent=step.copy;
- document.getElementById('workflow-count').textContent='0'+(index+1)+' / 04';
+ document.getElementById('workflow-count').textContent='0'+(index+1)+' / 07';
  phaseButtons.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===index)));
 }
-function enableTimeline() {
- scrub.max=workflow.duration;
- scrub.disabled=false;
- play.disabled=false;
- phaseButtons.forEach(button=>button.disabled=false);
- syncWorkflow();
-}
-workflow.addEventListener('loadedmetadata',enableTimeline);
-if(workflow.readyState>=1) enableTimeline();
-for(const event of ['timeupdate','seeked']) workflow.addEventListener(event,syncWorkflow);
-for(const event of ['play','pause','ended']) workflow.addEventListener(event,()=>{
- play.textContent=workflow.paused||workflow.ended?'▷ Play':'Ⅱ Pause';
+window.addEventListener('message',event=>{
+ if(event.source!==workflow.contentWindow||event.origin!==location.origin||event.data?.type!=='aisle-workflow-ready') return;
+ workflowReady=true;
+ workflow.hidden=false;
+ workflowStill.hidden=true;
+ seekWorkflow(position);
 });
-play.addEventListener('click',()=>{
- if(workflow.paused) workflow.play().catch(()=>{});
- else workflow.pause();
-});
-function seekWorkflow(time) {
- workflow.currentTime=time;
- syncWorkflow();
-}
 scrub.addEventListener('input',()=>seekWorkflow(Number(scrub.value)));
-phaseButtons.forEach((button,i)=>button.addEventListener('click',()=>seekWorkflow(steps[i].time)));
-window.disposeAISLEPage=()=>workflow.pause();
+phaseButtons.forEach((button,i)=>button.addEventListener('click',()=>seekWorkflow(steps[i].focus)));
 
 if(!isDetail){
  const tabs=[document.getElementById('visual-tab'),document.getElementById('list-tab')];
  function switchView(tab){
   tabs.forEach(t=>{const selected=t===tab;t.setAttribute('aria-selected',String(selected));t.tabIndex=selected?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!selected});
-  if (tab===tabs[1]) workflow.pause();
  }
  tabs.forEach((tab,i)=>{
   tab.addEventListener('click',()=>switchView(tab));
@@ -136,7 +138,6 @@ if(!isDetail){
 const filmDialog=document.getElementById('film-dialog'),film=document.getElementById('film');
 const filmButton=document.querySelector('[data-play]');
 filmButton.addEventListener('click',()=>{
- workflow.pause();
  filmDialog.showModal();
  film.play().catch(()=>{});
 });

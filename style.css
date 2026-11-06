@@ -186,22 +186,25 @@
 .research-film video{max-height:72vh;object-fit:contain}
 .colour-case .case-body{grid-template-columns:minmax(0,2.65fr) minmax(255px,1fr)}
 .colour-case .side{min-height:0}
-.colour-controls{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center}
-.colour-controls .subtle-btn{min-width:73px;justify-content:center;border-radius:9px;background:#f7f2fa;color:#674889}
-.colour-timeline{display:grid;gap:3px}
-#workflow-scrub{width:100%;margin:0;accent-color:#7958a0;cursor:pointer}
+.stage.workflow-stage{display:flex;min-width:0;min-height:0;flex-direction:column;align-items:stretch;justify-content:center;gap:12px;padding:19px;background:#eeebf3}
+.workflow-frame{aspect-ratio:8/5;overflow:hidden;border:1px solid #d7cde2;border-radius:10px;background:#f5f1f8}
+.workflow-frame iframe,.workflow-frame img{display:block;width:100%;height:100%;border:0}
+.colour-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center}
+.colour-timeline{display:grid;gap:5px}
+#workflow-scrub{width:100%;margin:0;accent-color:#7958a0;cursor:ew-resize}
 #workflow-scrub:focus-visible{outline:2px solid #9976bc;outline-offset:2px}
-.colour-steps{display:flex;justify-content:space-between;gap:2px}
-.colour-steps button{padding:1px 3px;border:0;background:none;font-size:11px;color:#6f627d}
-.colour-steps button[aria-pressed="true"]{font-weight:600;color:#5e3d7c}
+.colour-steps{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.colour-steps button{padding:4px 2px;border:0;border-radius:6px;background:none;font-size:11px;color:#6f627d}
+.colour-steps button[aria-pressed="true"]{font-weight:600;color:#5e3d7c;background:#f0e8f6}
 #workflow-count{white-space:nowrap;color:#6f627d;font-size:10px;font-variant-numeric:tabular-nums}
 @media(max-width:760px){
  .colour-case .case-body{grid-template-columns:1fr}
  .colour-controls{gap:9px}
 }
 @media(max-width:480px){
- .colour-controls{grid-template-columns:auto minmax(0,1fr)}
+ .stage.workflow-stage{padding:10px;gap:8px}
+ .colour-controls{grid-template-columns:1fr}
+ .colour-steps{grid-template-columns:repeat(4,minmax(0,1fr))}
  .colour-steps button{font-size:10px}
  #workflow-count{display:none}
- .colour-controls .subtle-btn{min-width:52px}
 }
