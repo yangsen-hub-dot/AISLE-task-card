@@ -12,6 +12,7 @@ A standalone English design preview for the AISLE task catalogue, illustrated ca
 - Reduced-motion support and automatic suspension when the animation is out of view.
 - A Suzhou experiment film from the AISLE website.
 - A dedicated [Task 02 replay](https://yangsen-hub-dot.github.io/AISLE-task-card/constraint-adherence.html), linked from both the task cards and task list.
+- Revised [Task 03 adaptive robustness](https://yangsen-hub-dot.github.io/AISLE-task-card/adaptive-robustness.html) and [Task 04 spectral inference](https://yangsen-hub-dot.github.io/AISLE-task-card/spectral-inference.html) videos, linked from both catalogue views.
 - An interactive solid electrolyte prediction case.
 - A proposed [Quantum Dot Formulation Optimisation task](https://yangsen-hub-dot.github.io/AISLE-task-card/quantum-dot.html), with formulation ranges, spectral observations, query rules and independent scoring criteria.
 
@@ -47,4 +48,12 @@ The task page has no script dependency. Its dedicated styles and schematic cover
 
 The 36-second video uses the supplied presentation's GPT-5.5 v2 Case C: unsafe executions 3 and 5, a safe target match at 4, and a whole-run failure. Colour-error values are approximately digitized from the chart. Recipes, actions and apparatus are illustrative. The separate absorption spectrum is redrawn from a supplied example image; it is not a measurement from a replay round.
 
-GPT identifies the active case. Codex, Claude, Gemini and DeepSeek icons are labelled examples, without additional model results. Brand marks use Lobe Icons (`@lobehub/icons-static-svg` 1.102.0); its MIT licence is retained in `assets/task02-icons-LICENSE.txt`. The exported video retains its visual-review-pending label.
+GPT, Codex, Claude, Gemini and DeepSeek appear with equal icon, label and frame sizes in one Agents / Models panel. They are examples evaluated separately, not participants in a shared run. GPT-5.5 Case C is retained as source attribution. Brand marks use Lobe Icons (@lobehub/icons-static-svg 1.102.0); its MIT licence is retained in assets/task02-icons-LICENSE.txt. The exported video retains its visual-review-pending label.
+
+## Task 03 and Task 04 illustrated workflows
+
+Task 03 is a 38-second hidden-transfer-drift illustration. Measured samples appear sequentially with commands 50 / 50 / 62.5 µL, illustrative delivered volumes 50 / 40 / 50 µL and schematic optical signals 100 / 80 / 100%. Delivered volume is viewer explanation, not agent telemetry. The original BEARS research film remains available below the animation.
+
+Task 04 is a 40-second synthetic spectral inference illustration: seven known-pH buffers, four acquired observations and an eight-action budget. The final pKa and 95% interval are conditional on known spectral bases and noise. The methyl-orange structure provides viewer context, with identity hidden from the agent; neither measured model performance nor experimental uncertainty is claimed.
+
+Both use the same equal model presentation as Task 02. Their visual-review-pending labels remain. Legacy task-video.html query links continue to load the revised videos. The Task 01 walkthrough, solid electrolyte page and quantum dot specification are retained.
