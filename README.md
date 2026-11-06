@@ -12,14 +12,14 @@ A standalone English design preview for the AISLE task catalogue, illustrated ca
 - Reduced-motion support and automatic suspension when the animation is out of view.
 - A Suzhou experiment film from the AISLE website.
 - A dedicated [Task 02 replay](https://yangsen-hub-dot.github.io/AISLE-task-card/constraint-adherence.html), linked from both the task cards and task list.
-- Revised [Task 03 adaptive robustness](https://yangsen-hub-dot.github.io/AISLE-task-card/adaptive-robustness.html) and [Task 04 spectral inference](https://yangsen-hub-dot.github.io/AISLE-task-card/spectral-inference.html) videos, linked from both catalogue views.
+- Interactive [Task 03 adaptive robustness](https://yangsen-hub-dot.github.io/AISLE-task-card/adaptive-robustness.html) and [Task 04 spectral inference](https://yangsen-hub-dot.github.io/AISLE-task-card/spectral-inference.html) scenes, linked from both catalogue views.
 - An interactive solid electrolyte prediction case.
 - The homepage Featured case embeds the solid electrolyte 3D scene with stage controls; the colour-matching walkthrough remains in its own task card and page.
 - A proposed [Quantum Dot Formulation Optimisation task](https://yangsen-hub-dot.github.io/AISLE-task-card/quantum-dot.html), with formulation ranges, spectral observations, query rules and independent scoring criteria.
 
 ## Run locally
 
-Open index.html in a modern browser. No build tools, server, or package installation are required.
+Serve the repository with a local static HTTP server, then open index.html. The interactive Three.js scenes use JavaScript modules and same-origin messaging. No build step is required.
 
 GitHub Pages serves the main branch from the repository root.
 
@@ -53,8 +53,14 @@ GPT, Codex, Claude, Gemini and DeepSeek appear with equal icon, label and frame 
 
 ## Task 03 and Task 04 illustrated workflows
 
-Task 03 is a 38-second hidden-transfer-drift illustration. Measured samples appear sequentially with commands 50 / 50 / 62.5 µL, illustrative delivered volumes 50 / 40 / 50 µL and schematic optical signals 100 / 80 / 100%. Delivered volume is viewer explanation, not agent telemetry. The original BEARS research film remains available below the animation.
+Task 03 is a 38-second hidden-transfer-drift illustration. Measured samples appear sequentially with commands 50 / 50 / 62.5 µL, illustrative delivered volumes 50 / 40 / 50 µL and schematic optical signals 100 / 80 / 100%. Delivered volume is viewer explanation, not agent telemetry. The original BEARS research film remains available through a source link.
 
 Task 04 is a 40-second synthetic spectral inference illustration: seven known-pH buffers, four acquired observations and an eight-action budget. The final pKa and 95% interval are conditional on known spectral bases and noise. The methyl-orange structure provides viewer context, with identity hidden from the agent; neither measured model performance nor experimental uncertainty is claimed.
 
-Both use the same equal model presentation as Task 02. Their visual-review-pending labels remain. Legacy task-video.html query links continue to load the revised videos. The Task 01 walkthrough, solid electrolyte page and quantum dot specification are retained.
+Both use the same equal model presentation as Task 02. Legacy task-video.html query links load the interactive scenes. The Task 01 walkthrough, solid electrolyte page and quantum dot specification are retained.
+
+## Interactive stage controls
+
+Task 02, 03 and 04 pages render the existing Three.js scenes directly, with a continuous stage slider, six stage buttons, and play/pause. They do not embed or load MP4 players. The exported videos remain archived assets.
+
+The controls preserve the 36/38/40-second timelines and measurement gates. Seeking backwards clears later observations and estimates. Models remain equal peers. Scene state is rendered on demand; playback pauses when hidden or off screen. Shared controls accept only same-origin messages from their own scene frame. Each task bundles the existing renderer, model icons and illustrative dataset under assets/interactive; provenance files and licences are retained. Visual review remains pending.
