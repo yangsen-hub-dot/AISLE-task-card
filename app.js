@@ -17,13 +17,32 @@ const steps = [
 ];
 const header = '<header class="header wrap"><a class="brand" href="index.html" aria-label="AISLE task catalogue"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><strong>AISLE</strong><span class="brand-sub">AI SCIENTISTS’<br>LAST EXAM</span></a><nav aria-label="Main navigation"><a href="https://aisle.science/" target="_blank" rel="noreferrer">Home</a><a class="active" href="index.html" aria-current="page">Tasks</a><a href="https://aisle.science/leaderboard.html" target="_blank" rel="noreferrer">Leaderboard ↗</a></nav><span class="prototype">DESIGN PREVIEW</span></header>';
 const footer = '<footer class="site-footer wrap"><span>AISLE · Nature as the verifier.</span><span>Design preview · Illustrated examples</span><a href="https://aisle.science/tasks.html" target="_blank" rel="noreferrer">AISLE task descriptions ↗</a></footer>';
-const dialog = '<dialog class="video-dialog" id="film-dialog" aria-labelledby="film-title"><div class="dialog-head"><strong id="film-title">Suzhou · Colour-matching experiment</strong><button class="close-btn" id="close-film" aria-label="Close film">×</button></div><video id="film" src="assets/suzhou.mp4" poster="assets/suzhou.webp" controls playsinline preload="none"></video><p class="media-error" id="media-error" hidden>The video could not be played. <a href="assets/suzhou.mp4" target="_blank">Open the film ↗</a></p><p class="dialog-caption">Experiment film from AISLE · Experimental setting and operation.</p></dialog>';
+const caseFilms = {
+ workflow: {
+  title:'Colour matching · Original animation',
+  src:'assets/colour-matching-workflow.mp4',
+  poster:'assets/colour-matching-workflow.webp',
+  caption:'Formulation · Experiment · Spectrum · Feedback'
+ },
+ film: {
+  title:'Suzhou · Colour-matching experiment',
+  src:'assets/suzhou.mp4',
+  poster:'assets/suzhou.webp',
+  caption:'Experiment footage from AISLE · Experimental setting and operation.'
+ }
+};
+const dialog = `<dialog class="video-dialog" id="film-dialog" aria-labelledby="film-title">
+ <div class="dialog-head"><strong id="film-title"></strong><button class="close-btn" id="close-film" aria-label="Close video">×</button></div>
+ <video id="film" controls playsinline preload="none"></video>
+ <p class="media-error" id="media-error" hidden>The video could not be played. <a id="film-open" target="_blank" rel="noreferrer">Open the video ↗</a></p>
+ <div class="dialog-caption"><span id="film-caption"></span><a class="small-link" id="film-download" download hidden>Download MP4 ↓</a></div>
+</dialog>`;
 
 function caseMarkup() {
  const hotspots = steps.slice(1).map((step,i) => `<button class="colour-pin colour-pin--${i+1}" type="button" data-phase="${i+1}"><span>0${i+1} ${step.nav}</span><strong>${step.label}</strong></button>`).join('');
  const labels = steps.map((step,i) => `<button type="button" data-phase="${i}" aria-pressed="${i===0}">${step.nav}</button>`).join('');
  return `<div class="case colour-case" id="featured-case">
-  <div class="case-top"><span class="case-icon" aria-hidden="true"></span><strong>Experimental optimisation</strong><span class="case-id">COLOUR MATCHING / SUZHOU REAL-4D</span><button class="subtle-btn film-trigger" data-play>▷ Experiment film</button></div>
+  <div class="case-top"><span class="case-icon" aria-hidden="true"></span><strong>Experimental optimisation</strong><span class="case-id">COLOUR MATCHING / SUZHOU REAL-4D</span><div class="case-media"><button class="subtle-btn original-trigger" type="button" data-play="workflow">▷ Original animation · 36 s</button><button class="subtle-btn film-trigger" type="button" data-play="film">▷ Experiment film</button></div></div>
   <div class="case-body">
    <div class="stage colour-stage" data-current="0">
     <div class="colour-stage-head"><div><span class="eyebrow" id="scene-kicker">Overview</span><h3 id="scene-title">The experimental loop</h3></div><span class="target-tag"><i></i>Fixed target</span></div>
@@ -166,14 +185,32 @@ if(!isDetail){
  });
 }
 const filmDialog=document.getElementById('film-dialog'),film=document.getElementById('film');
-let videoOpener=null;
+const mediaError=document.getElementById('media-error');
+const filmDownload=document.getElementById('film-download');
+let videoOpener=null,activeFilm=null;
 document.querySelectorAll('[data-play]').forEach(button=>button.addEventListener('click',()=>{
- videoOpener=button;pauseScene();filmDialog.showModal();film.play().catch(()=>{});
+ const key=button.dataset.play;
+ const media=caseFilms[key];
+ videoOpener=button;
+ pauseScene();
+ if(activeFilm!==key){
+  activeFilm=key;
+  document.getElementById('film-title').textContent=media.title;
+  document.getElementById('film-caption').textContent=media.caption;
+  document.getElementById('film-open').href=media.src;
+  filmDownload.href=media.src;
+  filmDownload.hidden=key!=='workflow';
+  mediaError.hidden=true;
+  film.poster=media.poster;
+  film.src=media.src;
+ }
+ filmDialog.showModal();
+ film.play().catch(()=>{});
 }));
 document.getElementById('close-film').addEventListener('click',()=>filmDialog.close());
 filmDialog.addEventListener('close',()=>{film.pause();videoOpener?.focus()});
 filmDialog.addEventListener('click',event=>{
  if(event.target===filmDialog){const rect=filmDialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)filmDialog.close()}
 });
-film.addEventListener('error',()=>document.getElementById('media-error').hidden=false);
+film.addEventListener('error',()=>mediaError.hidden=false);
 }
