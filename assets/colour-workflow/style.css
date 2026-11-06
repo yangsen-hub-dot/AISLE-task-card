@@ -115,3 +115,7 @@ footer {top:1161px;padding-top:9px;border-top:1px solid #dfd6e8;color:#6e5e79;fo
 .spectrum-panel .spectrum-title {font-size:11px;font-weight:700;letter-spacing:1.1px;fill:#684f7f}
 .spectrum-axes {fill:none;stroke:#d4c7df;stroke-width:1}
 .spectrum-trace {fill:none;stroke:#78549f;stroke-width:2.8;stroke-linecap:round}
+
+#scene-viewport {position:absolute;width:1920px;height:1200px;transform-origin:0 0}
+#artboard {transition:transform 780ms cubic-bezier(.22,.72,.26,1)}
+@media (prefers-reduced-motion:reduce) {#artboard {transition:none}}
