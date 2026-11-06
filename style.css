@@ -178,6 +178,8 @@
 .card-cta{margin-top:auto}
 .task-film{max-width:1100px}
 .task-film video{max-height:72vh;object-fit:contain}
+.case-source-note{max-width:1100px;margin:14px 0 0;color:var(--muted);font-size:11px;line-height:1.8}
+body[data-task=constraints] .task-film video{aspect-ratio:43/27}
 @media(min-width:1240px){.card-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
 
 .card-art{position:relative}
